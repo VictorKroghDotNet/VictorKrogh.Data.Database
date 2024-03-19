@@ -39,81 +39,81 @@ public abstract class DbProviderBase(IsolationLevel isolationLevel) : ProviderBa
         return Connection.GetQualifiedTableName<TModel>();
     }
 
-    public Task<TModel?> GetAsync<TModel, TKey>(TKey key, int? commandTimeout = null)
+    public async ValueTask<TModel?> GetAsync<TModel, TKey>(TKey key, int? commandTimeout = null)
         where TModel : Model
         where TKey : notnull
     {
-        return Connection.GetAsync<TModel>([key], Transaction, commandTimeout);
+        return await Connection.GetAsync<TModel>([key], Transaction, commandTimeout);
     }
 
-    public async Task<IEnumerable<TModel?>> GetAllAsync<TModel>(int? commandTimeout = null) where TModel : Model
+    public async ValueTask<IEnumerable<TModel?>> GetAllAsync<TModel>(int? commandTimeout = null) where TModel : Model
     {
         return await Connection.GetAllAsync<TModel>(Transaction, commandTimeout);
     }
 
-    public Task<bool> InsertAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
+    public async ValueTask<bool> InsertAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
     {
-        return Connection.InsertAsync(model, Transaction, commandTimeout);
+        return await Connection.InsertAsync(model, Transaction, commandTimeout);
     }
 
-    public Task<bool> UpdateAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
+    public async ValueTask<bool> UpdateAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
     {
-        return Connection.UpdateAsync(model, Transaction, commandTimeout);
+        return await Connection.UpdateAsync(model, Transaction, commandTimeout);
     }
 
-    public Task<bool> DeleteAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
+    public async ValueTask<bool> DeleteAsync<TModel>(TModel model, int? commandTimeout = null) where TModel : Model
     {
-        return Connection.DeleteAsync(model, Transaction, commandTimeout);
+        return await Connection.DeleteAsync(model, Transaction, commandTimeout);
     }
 
-    public Task<bool> DeleteAllAsync<TModel>(int? commandTimeout = null) where TModel : Model
+    public async ValueTask<bool> DeleteAllAsync<TModel>(int? commandTimeout = null) where TModel : Model
     {
-        return Connection.DeleteAllAsync<TModel>(Transaction, commandTimeout);
+        return await Connection.DeleteAllAsync<TModel>(Transaction, commandTimeout);
     }
 
-    public async Task<IEnumerable<TModel?>> QueryAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
+    public async ValueTask<IEnumerable<TModel?>> QueryAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
     {
         return await Connection.QueryAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<TModel> QueryFirstAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
+    public async ValueTask<TModel> QueryFirstAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
     {
-        return Connection.QueryFirstAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.QueryFirstAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<TModel?> QueryFirstOrDefaultAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
+    public async ValueTask<TModel?> QueryFirstOrDefaultAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
     {
-        return Connection.QueryFirstOrDefaultAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.QueryFirstOrDefaultAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<TModel> QuerySingleAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
+    public async ValueTask<TModel> QuerySingleAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
     {
-        return Connection.QuerySingleAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.QuerySingleAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<TModel?> QuerySingleOrDefaultAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
+    public async ValueTask<TModel?> QuerySingleOrDefaultAsync<TModel>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null) where TModel : Model
     {
-        return Connection.QuerySingleOrDefaultAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.QuerySingleOrDefaultAsync<TModel>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<int> ExecuteAsync(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
+    public async ValueTask<int> ExecuteAsync(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
     {
-        return Connection.ExecuteAsync(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.ExecuteAsync(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
-    public Task<T?> ExecuteScalarAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
+    public async ValueTask<T?> ExecuteScalarAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
     {
-        return Connection.ExecuteScalarAsync<T>(sql, parameters, Transaction, commandTimeout, commandType);
+        return await Connection.ExecuteScalarAsync<T>(sql, parameters, Transaction, commandTimeout, commandType);
     }
 
     [Obsolete("Use QuerySingleOrDefaultAsync<T>() instead!", true)]
-    public Task<T?> ExecuteSingleOrDefaultAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
+    public ValueTask<T?> ExecuteSingleOrDefaultAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
     {
         throw new NotImplementedException();
     }
 
     [Obsolete("Use QueryAsync<T>() instead!", true)]
-    public Task<IEnumerable<T?>> ExecuteQueryAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
+    public ValueTask<IEnumerable<T?>> ExecuteQueryAsync<T>(string sql, object? parameters = null, int? commandTimeout = null, CommandType? commandType = null)
     {
         throw new NotImplementedException();
     }
