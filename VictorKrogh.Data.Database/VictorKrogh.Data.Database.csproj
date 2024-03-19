@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="VictorKrogh.Data" Version="8.0.4" />
-		<PackageReference Include="VictorKrogh.Data.Database.Abstractions" Version="8.0.2" />
+		<PackageReference Include="VictorKrogh.Data.Database.Abstractions" Version="8.0.3" />
 		<PackageReference Include="VictorKrogh.Extensions.Dapper" Version="8.0.5" />
 	</ItemGroup>
 
