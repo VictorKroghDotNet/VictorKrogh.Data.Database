@@ -22,8 +22,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="VictorKrogh.Data" Version="8.0.6" />
-		<PackageReference Include="VictorKrogh.Data.Database.Abstractions" Version="8.0.4" />
+		<PackageReference Include="VictorKrogh.Data" Version="8.0.7" />
+		<PackageReference Include="VictorKrogh.Data.Database.Abstractions" Version="8.0.5" />
 		<PackageReference Include="VictorKrogh.Extensions.Dapper" Version="8.0.6" />
 	</ItemGroup>
 
